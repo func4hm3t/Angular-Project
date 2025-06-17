@@ -1,0 +1,1 @@
+todoApp 2. gün yapıldı öğrenme için ve movieApp'e başlandı componentler'e kadar todoApp'te çalıştık
