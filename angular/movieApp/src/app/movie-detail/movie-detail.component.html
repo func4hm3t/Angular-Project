@@ -1,0 +1,7 @@
+<div *ngIf="movie" class="card my-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ movie.name }}</h5>
+    <p class="card-text">{{ movie.description }}</p>
+    <img [src]="'assets/img/' + movie.imageurl" class="img-fluid" [alt]="movie.name" style="width: 250px;">
+  </div>
+</div>

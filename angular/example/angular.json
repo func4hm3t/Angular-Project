@@ -3,19 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "movieApp": {
+    "example": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "standalone": true
-        },
-        "@schematics/angular:directive": {
-          "standalone": true
-        },
-        "@schematics/angular:pipe": {
-          "standalone": true
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -23,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/movie-app",
+            "outputPath": "dist/example",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -31,19 +21,14 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
-              }
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -67,16 +52,16 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "movieApp:build:production"
+              "buildTarget": "example:build:production"
             },
             "development": {
-              "buildTarget": "movieApp:build:development"
+              "buildTarget": "example:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,8 +80,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
+                "input": "public"
               }
             ],
             "styles": [

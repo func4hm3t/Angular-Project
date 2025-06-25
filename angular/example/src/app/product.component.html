@@ -1,0 +1,35 @@
+<!-- <app-admin-products></app-admin-products> --> 
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="m-3">
+                <div class="bg-info text-white m-2 p-2">
+                    {{ jsonProduct }}
+                </div>
+                <div class="form-roup">
+                    <label >Name</label>
+                    <input required [(ngModel)]="newProduct.name" name="pName" #name="ngModel"  type="text" class="form-control">
+                    <div class="alert alert-danger" *ngIf="!name.valid && name.touched">
+                        Name is required.
+                    </div>
+                </div>
+                <div class="form-roup">
+                    <label >Description</label>
+                    <textarea [(ngModel)]="newProduct.description" type="text" class="form-control"></textarea>
+                </div>
+                <div class="form-roup">
+                    <label >Price</label>
+                    <input [(ngModel)]="newProduct.price" type="text" class="form-control">
+                </div>
+                <div class="form-roup">
+                    <label >ImageUrl</label>
+                   <input [(ngModel)]="newProduct.imageurl" type="text" class="form-control">
+
+                </div>
+                <button (click)="addProduct(newProduct)" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
