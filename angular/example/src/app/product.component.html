@@ -1,34 +1,75 @@
-<!-- <app-admin-products></app-admin-products> --> 
+<!-- <app-admin-products></app-admin-products> -->
 
 
 <div class="container">
     <div class="row">
         <div class="col-8">
             <div class="m-3">
-                <div class="bg-info text-white m-2 p-2">
-                    {{ jsonProduct }}
-                </div>
-                <div class="form-roup">
-                    <label >Name</label>
-                    <input required [(ngModel)]="newProduct.name" name="pName" #name="ngModel"  type="text" class="form-control">
-                    <div class="alert alert-danger" *ngIf="!name.valid && name.touched">
-                        Name is required.
+                <form #form="ngForm" (ngSubmit)="submitForm(form)">
+                    <div class="bg-danger text-white p-3 my-2" *ngIf="formSubmitted && form.invalid">
+                        Form seviyesinde bir hata oluştu
+                        <ul>
+                            <li *ngFor="let error of getFormValidationErrors(form)">
+                                {{ error}}
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div class="form-roup">
-                    <label >Description</label>
-                    <textarea [(ngModel)]="newProduct.description" type="text" class="form-control"></textarea>
-                </div>
-                <div class="form-roup">
-                    <label >Price</label>
-                    <input [(ngModel)]="newProduct.price" type="text" class="form-control">
-                </div>
-                <div class="form-roup">
-                    <label >ImageUrl</label>
-                   <input [(ngModel)]="newProduct.imageurl" type="text" class="form-control">
+                    <div class="bg-info text-white m-2 p-2">
+                        {{ jsonProduct }}
+                    </div>
 
-                </div>
-                <button (click)="addProduct(newProduct)" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input required minlength="3" maxlength="20" pattern="^[A-Za-z ]+$"
+                            [(ngModel)]="newProduct.name" name="name" #name="ngModel" type="text" class="form-control"
+                            (change)="log(name.value)">
+                        <div class="alert alert-danger" *ngIf="(formSubmitted|| name.dirty)&& name.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(name,'name')">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-roup">
+                        <label>Description</label>
+                        <textarea required [(ngModel)]="newProduct.description" name="description"
+                            #description="ngModel" type="text" class="form-control"></textarea>
+                        <div class="alert alert-danger" *ngIf="(formSubmitted|| description.dirty)&& description.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(description,'description')">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-roup">
+                        <label>Price</label>
+                        <input required [(ngModel)]="newProduct.price" name="price" #price="ngModel" type="text"
+                            class="form-control">
+                        <div class="alert alert-danger" *ngIf="(formSubmitted|| price.dirty)&& price.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(price,'price')">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-roup">
+                        <label>ImageUrl</label>
+                        <input required [(ngModel)]="newProduct.imageurl" name="imageurl" #imageurl="ngModel"
+                            type="text" class="form-control">
+                        <div class="alert alert-danger" *ngIf="(formSubmitted|| imageurl.dirty)&& imageurl.invalid">
+                            <ul>
+                                <li *ngFor="let error of getValidationErrors(imageurl,'imageurl')">
+                                    {{ error }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2" [disabled]=""
+                    [class.btn-secondary]="formSubmitted && form.invalid">Submit</button>
+                </form>
             </div>
         </div>
     </div>
