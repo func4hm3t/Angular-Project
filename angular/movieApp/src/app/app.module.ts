@@ -15,20 +15,20 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({ 
   declarations: [
     AppComponent,
     NavbarComponent,
     LoggingComponent,
-    MoviesComponent,
     MovieDetailComponent,
-    NavbarComponent,
     DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    CommonModule,
     RouterModule,
     AppRoutingModule,
     HttpClientModule,

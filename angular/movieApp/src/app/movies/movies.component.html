@@ -1,14 +1,10 @@
-<div class="card">
-  <div class="card-header">{{ title }}</div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item" *ngFor="let movie of movies">
-      <a routerLink='/detail/{{movie.id}}' 
-         routerLinkActive="router-link-active" 
-         class="text-decoration-none text-dark d-block">
-        <span class="badge bg-primary me-2">{{ movie.id }}</span>
-        {{ movie.name }}
-        <span class="btn-close float-end"></span>
-      </a>
-    </li>
-  </ul>
+<div class="card" *ngFor="let movie of movies" style="width: 18rem; margin: 1rem;">
+  <!-- Resim yolunuzu assets klasörüne göre ayarlayın -->
+  <img [src]="'assets/img/' + movie.imageurl" class="card-img-top" alt="{{ movie.name }}">
+  <div class="card-body">
+    <h5 class="card-title">
+      <a [routerLink]="['/detail', movie.id]">{{ movie.name }}</a>
+    </h5>
+    <p class="card-text">{{ movie.description }}</p>
+  </div>
 </div>

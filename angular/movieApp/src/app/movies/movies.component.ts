@@ -6,9 +6,12 @@ import { Movie } from '../movie/movie';
 import { MovieService } from '../movie.service';
 
 @Component({
-  selector: 'app-movies',
+  selector: '/app-movies',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule,    // *ngFor vs.
+    RouterModule     // [routerLink]
+  ],
   templateUrl: './movies.component.html'
 })
 export class MoviesComponent implements OnInit {
